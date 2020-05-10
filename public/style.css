@@ -1,0 +1,12 @@
+button {
+	width: 45%;
+	line-height: 2;
+}
+#dice {
+	font-size: 50px;
+	color: red;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	text-align: center;
+}
