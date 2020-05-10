@@ -12,7 +12,7 @@ const connectionsRef = database.ref("/connections");
 const connectedRef = database.ref(".info/connected");
 let currentDeck = [];
 let a = JSON.parse(readCookie("myHand"));
-b = readCookie("knightCount");
+let b = readCookie("knightCount");
 let myHand = a ? a : [];
 let knightCount = b ? b : 0;
 
