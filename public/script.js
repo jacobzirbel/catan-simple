@@ -21,7 +21,6 @@ const DAY_IN_MS = 24 * 60 * 60 * 1000;
 const pickCard = () => {
 	const n = Math.floor(Math.random() * currentDeck.length);
 	myHand.push(currentDeck[n]);
-
 	currentDeck.splice(n, 1);
 	showHand();
 	database.ref(roomNumber).update({ deck: JSON.stringify(currentDeck) });
@@ -48,7 +47,6 @@ const useKnight = () => {
 		}
 	}
 };
-
 let createDeck = () => {
 	let cards = [];
 	for (let i = 0; i < 20; i++) {
@@ -90,11 +88,13 @@ const resetDeck = () => {
 	}
 };
 const changeRoom = () => {
+	database.ref(roomNumber).off("value");
 	roomNumber = "";
 	getRoom(rooms);
+	startGame(roomNumber);
 };
 const startNewRoom = (rooms) => {
-	let roomNumber = "0";
+	roomNumber = "0";
 	let tries = 0;
 	let n = 10;
 	while (rooms.includes(roomNumber.toString())) {
@@ -131,6 +131,7 @@ const getRoom = (rooms) => {
 const deleteRoom = (roomNumber) => {
 	database.ref().child(roomNumber).remove();
 };
+
 const startGame = (roomNumber) => {
 	database.ref(roomNumber).on("value", (snap) => {
 		$("#dice").text(snap.val().roll);
