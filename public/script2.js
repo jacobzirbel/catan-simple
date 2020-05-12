@@ -10,7 +10,9 @@ firebase.initializeApp(config);
 const database = firebase.database();
 let currentDeck = [];
 let rooms = [];
+
 let a = JSON.parse(readCookie("myHand"));
+
 let b = readCookie("knightCount");
 let myHand = a ? a : [];
 let knightCount = b ? b : 0;
@@ -18,6 +20,10 @@ let roomNumber;
 const DAY_IN_MS = 24 * 60 * 60 * 1000;
 
 database.ref().once("value", (snap) => {
+	const deleteRoom = (rn) => {
+		database.ref().child(rn).remove();
+	};
+
 	for (key in snap.val()) {
 		if (snap.val()[key].start + DAY_IN_MS < new Date().getTime()) {
 			deleteRoom(key);
@@ -52,7 +58,7 @@ function getRoom() {
 	if (r) {
 		roomNumber = r;
 	} else {
-		let userEntered = prompt("What room number?").toString();
+		let userEntered = prompt("Room number / '0' to start new room").toString();
 		if (userEntered === "0") {
 			startNewRoom();
 		} else if (rooms.includes(userEntered)) {
@@ -156,20 +162,23 @@ function setRoomCookie() {
 	document.cookie = "roomnum=" + roomNumber.toString();
 }
 function changeRoom() {
-	let a = confirm("switch room?");
+	let a = confirm("You will lose your hand data");
 	console.log(a);
 	if (a) {
 		database.ref(roomNumber).off("value");
 		deleteCookies();
+		myHand = [];
+		knightCount = 0;
 		getRoom();
 		printRoomToDom();
 		setRoomCookie();
+		showHand();
 		startListener();
 	}
 	// get new deck, set rest of elements to dom
 }
 function deleteCookies() {
-	document.cookie = "myHand=;";
+	document.cookie = "myHand=[];";
 	document.cookie = "knightCount=;";
 	document.cookie = "roomnum=";
 }
