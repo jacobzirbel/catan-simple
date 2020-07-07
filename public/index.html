@@ -1,57 +1,63 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Catan Deck</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link
-			rel="stylesheet"
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		/>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catan Deck</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-		<!-- update the version number as needed -->
-		<script defer src="/__/firebase/7.13.2/firebase-app.js"></script>
-		<!-- include only the Firebase features as you need -->
-		<script defer src="/__/firebase/7.13.2/firebase-database.js"></script>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.13.2/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.13.2/firebase-database.js"></script>
 
-		<!-- initialize the SDK after all desired features are loaded -->
-		<script defer src="/__/firebase/init.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-	</head>
-	<body>
-		<h2>Cards Used: <span id="card-count"></span></h2>
-		<h5>Room Number <span id="roomnum"></span></h5>
-		<button onclick="changeRoom()">change room</button>
-		<button onclick="pickCard()">Pick Card</button>
-		<button onclick="resetDeck()">Reset Deck</button>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
 
-		<div id="hand"></div>
-		<br /><br />
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-		<button onclick="useKnight()">Knight</button>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Cards Used: <span id="card-count"></span></h2>
+      <h5>Room Number <span id="roomnum"></span></h5>
+      <button class="btn" onclick="pickCard()">Pick Card</button>
 
-		<div id="used"></div>
+      <div id="hand"></div>
+      <br /><br />
 
-		<button id="dice" onclick="rollDice()">Roll</button>
+      <button class="btn" onclick="useKnight()">Use Knight</button>
 
-		<script src="script2.js"></script>
-		<style>
-			button {
-				width: 45%;
-				line-height: 2;
-			}
-			#dice {
-				font-size: 50px;
-				color: red;
-				position: fixed;
-				right: 0;
-				bottom: 0;
-				text-align: center;
-				float: right;
-			}
-		</style>
-	</body>
+      <div id="used"></div>
+      <br />
+      <br />
+
+      <button class="btn" id="dice" onclick="rollDice()">Roll</button>
+      <h5 id="roll">Roll:</h5>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <button class="btn" onclick="changeRoom()">change room</button>
+      <button class="btn red" onclick="resetDeck()">Reset Deck</button>
+    </div>
+    <script src="script2.js"></script>
+  </body>
 </html>
