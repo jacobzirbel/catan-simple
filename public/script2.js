@@ -12,10 +12,10 @@ let currentDeck = [];
 let rooms = [];
 
 let a = JSON.parse(readCookie("myHand"));
-
 let b = readCookie("knightCount");
 let myHand = a ? a : [];
 let knightCount = b ? b : 0;
+showHand();
 let roomNumber;
 const DAY_IN_MS = 24 * 60 * 60 * 1000;
 
@@ -84,6 +84,7 @@ function startNewRoom() {
     .set({ deck: JSON.stringify(createDeck()), start: new Date().getTime() });
 }
 function pickCard() {
+  if (!roomNumber) return alert("Please join a room");
   const n = Math.floor(Math.random() * currentDeck.length);
   myHand.push(currentDeck[n]);
   currentDeck.splice(n, 1);
@@ -101,6 +102,7 @@ function showHand() {
   $("#used").text("Knights Used: " + knightCount);
 }
 function useKnight() {
+  if (!roomNumber) return alert("Please join a room");
   const i = myHand.indexOf("Knight");
   if (i > -1) {
     if (true) {
